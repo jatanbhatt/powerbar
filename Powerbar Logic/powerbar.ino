@@ -2,29 +2,25 @@
 // Controlling Powerbar over the Internet
 // -----------------------------------
 
-// First, let's create our "shorthand" for the pins
-// Same as in the Blink an LED example:
-// led1 is D0, led2 is D7
+// Initializing PINs
 
 int out1 = D1;
 int out2 = D2;
 int out3 = D3;
 int out4 = D4;
 
-// Last time, we only needed to declare pins in the setup function.
-// This time, we are also going to register our Particle function
-
 void setup()
 {
 
-   // Here's the pin configuration, same as last time
+   // pin configuration
     pinMode(out1, OUTPUT);
     pinMode(out2, OUTPUT);
     pinMode(out3, OUTPUT);
     pinMode(out4, OUTPUT);
 
-   // We are also going to declare a Particle.function so that we can turn the LED on and off from the cloud.
+   // Particle.function so that we can turn the LED on and off from the cloud.
    Particle.function("select",outToggle);
+
    // This is saying that when we ask the cloud for the function "led", it will employ the function ledToggle() from this app.
 
    // For good measure, let's also make sure both LEDs are off when we start:
@@ -34,11 +30,6 @@ void setup()
     digitalWrite(out4, HIGH);
 
 }
-
-
-// Last time, we wanted to continously blink the LED on and off
-// Since we're waiting for input through the cloud this time,
-// we don't actually need to put anything in the loop
 
 void loop()
 {
@@ -57,64 +48,64 @@ int outToggle(String command) {
     In this case, it will return 1 for the LEDs turning on, 0 for the LEDs turning off,
     and -1 if we received a totally bogus command that didn't do anything to the LEDs.
     */
-    
-    
+
+
     if (command == "1ON") {
         digitalWrite(out1,LOW);
         return 1;
     }
-    
+
     if (command == "1OFF") {
         digitalWrite(out1,HIGH);
         return 0;
-        
-        
-        
-        
+
+
+
+
     if (command == "2ON") {
         digitalWrite(out2,LOW);
         return 1;
     }
-    
+
     if (command == "2OFF") {
         digitalWrite(out2,HIGH);
         return 0;
     }
-    
-    
-    
-    
+
+
+
+
     if (command == "3ON") {
         digitalWrite(out3,LOW);
         return 1;
     }
-    
+
     if (command == "3OFF") {
         digitalWrite(out3,HIGH);
         return 0;
     }
-    
-    
-    
-    
+
+
+
+
     if (command == "4ON") {
         digitalWrite(out4,LOW);
         return 1;
     }
-    
+
     if (command == "4OFF") {
         digitalWrite(out4,HIGH);
         return 0;
     }
-    
-    
-    
+
+
+
     else {
         return -1;
     }
 
 }
-    
+
     /*if (command=="on") {
         digitalWrite(led1,HIGH);
         digitalWrite(led2,HIGH);
@@ -129,7 +120,3 @@ int outToggle(String command) {
         return -1;
     }
     */
-
-
-
-
